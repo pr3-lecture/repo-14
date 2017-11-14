@@ -63,12 +63,11 @@ class AboutConstants < Neo::Koan
   end
 
   def test_who_wins_with_both_nested_and_inherited_constants
-    assert_equal __, MyAnimals::Bird.new.legs_in_bird
+    assert_equal 2, MyAnimals::Bird.new.legs_in_bird
   end
 
   # QUESTION: Which has precedence: The constant in the lexical scope,
   # or the constant from the inheritance hierarchy?
-
   # ------------------------------------------------------------------
 
   class MyAnimals::Oyster < Animal
