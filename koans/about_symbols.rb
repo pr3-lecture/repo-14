@@ -83,12 +83,12 @@ class AboutSymbols < Neo::Koan
   # strings", though they are immutable. None of the
   # interesting string operations are available on symbols.
 
-  # def test_symbols_cannot_be_concatenated
-  #   # Exceptions will be pondered further down the path
-  #   assert_raise(FillMeInError) do
-  #      :cats + :dogs
-  #   end
-  # end
+  def test_symbols_cannot_be_concatenated
+    # Exceptions will be pondered further down the path
+    assert_raise(NoMethodError) do
+       :cats + :dogs
+    end
+  end
 
   def test_symbols_can_be_dynamically_created
     assert_equal :catsdogs, ("cats" + "dogs").to_sym
