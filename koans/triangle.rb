@@ -16,7 +16,7 @@
 def triangle(a, b, c)
   raise TriangleError if [a,b,c].min <= 0
   x, y, z = [a,b,c].sort
-  raise TriangeError if x + y <= z
+  raise TriangleError if x + y <= z
   [:equilateral, :isosceles, :scalene].fetch([a,b,c].uniq.size - 1)
 end
 
