@@ -159,7 +159,7 @@ class AboutClasses < Neo::Koan
     fido = Dog7.new("Fido")
 
     fidos_self = fido.get_self
-    assert_equal __, fidos_self
+    assert_equal true, fidos_self == fido
   end
 
   def test_to_s_provides_a_string_version_of_the_object
