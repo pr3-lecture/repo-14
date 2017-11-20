@@ -80,27 +80,31 @@ class AboutSandwichCode < Neo::Koan
   # ------------------------------------------------------------------
 
   def find_line2(file_name)
-    # Rewrite find_line using the file_sandwich library function.
-  end
-
-  def test_finding_lines2
-    assert_equal __, find_line2("example_file.txt")
-  end
-
-  # ------------------------------------------------------------------
-
-  def count_lines3(file_name)
-    open(file_name) do |file|
-      count = 0
-      while file.gets
-        count += 1
+    file_sandwich(file_name) do |file|
+      while line = file.gets
+        return line if line.match(/e/)
       end
-      count
-    end
   end
+end
 
-  def test_open_handles_the_file_sandwich_when_given_a_block
-    assert_equal __, count_lines3("example_file.txt")
+def test_finding_lines2
+  assert_equal "test\n", find_line2("example_file.txt")
+end
+
+# ------------------------------------------------------------------
+
+def count_lines3(file_name)
+  open(file_name) do |file|
+    count = 0
+    while file.gets
+      count += 1
+    end
+    count
   end
+end
+
+def test_open_handles_the_file_sandwich_when_given_a_block
+  assert_equal __, count_lines3("example_file.txt")
+end
 
 end
