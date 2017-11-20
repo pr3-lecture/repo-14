@@ -33,11 +33,11 @@ class AboutToStr < Neo::Koan
 
   def test_to_str_also_returns_a_string_representation
     like_a_string = CanBeTreatedAsString.new
-    assert_equal __, like_a_string.to_str
+    assert_equal "string-like", like_a_string.to_str
   end
 
   def test_to_str_allows_objects_to_be_treated_as_strings
-    assert_equal __, File.exist?(CanBeTreatedAsString.new)
+    assert_equal false, File.exist?(CanBeTreatedAsString.new)
   end
 
   # ------------------------------------------------------------------
