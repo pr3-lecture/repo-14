@@ -67,7 +67,7 @@ int charValidation(int mode, const char* message) {
 int validateKey(KEY k, char* input, int mode) {
     /* Key length check */
     if (strlen(k.chars) < 2) {
-        printf("Key too short!");
+        printf("Key too short!\n");
         return E_KEY_TOO_SHORT;
     }
 
@@ -75,24 +75,24 @@ int validateKey(KEY k, char* input, int mode) {
     if (mode == ENCRYPT) {
         /* Check for char validation in text and key*/
         if (charValidation(ENCRYPT, input) == 0) {
-            printf("Illegal chars in message!");
+            printf("Illegal chars in message!\n");
             return E_MESSAGE_ILLEGAL_CHAR;
         }
 
         if (charValidation(ENCRYPT, k.chars) == 0) {
-            printf("Illegal chars in key!");
+            printf("Illegal chars in key!\n");
             return E_KEY_ILLEGAL_CHAR;
         }
     } else {
         /* Decrypt */
         /* Check for char validation in cypher text and key*/
         if (charValidation(DECRYPT, input) == 0) {
-            printf("Illegal chars in cypher text!");
+            printf("Illegal chars in cypher text!\n");
             return E_CYPHER_ILLEGAL_CHAR;
         }
 
         if (charValidation(DECRYPT, k.chars) == 0) {
-            printf("Illegal chars in key!");
+            printf("Illegal chars in key!\n");
             return E_KEY_ILLEGAL_CHAR;
         }
     }
@@ -143,11 +143,12 @@ void crypt(KEY key, const char* input, char* output, int mode, int len) {
  */
 int encrypt(KEY key, const char* input, char* output) {
 
-    if(validateKey(key, (char *) input, ENCRYPT) == 0) {
+    int validation = validateKey(key, (char *) input, ENCRYPT);
+    if(validation == 0) {
         crypt(key, input, output, ENCRYPT, (int) strlen(input));
         return 0;
     } else {
-        return 5;
+        return validation;
     }
 }
 
@@ -159,12 +160,14 @@ int encrypt(KEY key, const char* input, char* output) {
  * @param output Decrypted text
  * @return 0 on success, otherwise error code
  */
-int decrypt(KEY key, const char* cypherText, char* output){
+int decrypt(KEY key, const char* cypherText, char* output) {
 
-    if (validateKey(key, (char *) cypherText, DECRYPT) == 0) {
+    int validation = validateKey(key, (char *) cypherText, DECRYPT);
+
+    if (validation == 0) {
         crypt(key, cypherText, output, DECRYPT, (int) strlen(cypherText));
         return 0;
     } else {
-        return 5;
+        return validation;
     }
 }
