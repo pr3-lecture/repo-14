@@ -41,7 +41,7 @@ static char* testCypherError() {
 
     int response = decrypt(k, text , result);
 
-    mu_assert("Cypher Text Error Success", response == 4);
+    mu_assert("Cypher Text Error Success", response == E_CYPHER_ILLEGAL_CHAR);
     return 0;
 }
 
@@ -53,7 +53,7 @@ static char* testMessageError() {
 
     int response = encrypt(k, text , result);
 
-    mu_assert("Cypher Text Error Success", response == 3);
+    mu_assert("Cypher Text Error Success", response == E_MESSAGE_ILLEGAL_CHAR);
     return 0;
 }
 
@@ -65,19 +65,19 @@ static char* testKeyError() {
 
     int response = decrypt(k, text , result);
 
-    mu_assert("Cypher Text Error Success", response == 2);
+    mu_assert("Cypher Text Error Success", response == E_KEY_ILLEGAL_CHAR);
     return 0;
 }
 
 static char* testKeyLengthError() {
     char* text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     KEY k;
-    k.chars = "A";
+    k.chars = "";
     char result[strlen(text)];
 
     int response = decrypt(k, text , result);
 
-    mu_assert("Cypher Text Error Success", response == 1);
+    mu_assert("Cypher Text Error Success", response == E_KEY_TOO_SHORT);
     return 0;
 }
 

@@ -1,5 +1,5 @@
-.PHONY: all clean
-all: crypto test
+.PHONY: all clean test
+all: crypto
 clean:
 	rm -f *.o decrypt encrypt test
 crypto.o: crypto.c

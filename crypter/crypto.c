@@ -66,8 +66,8 @@ int charValidation(int mode, const char* message) {
  */
 int validateKey(KEY k, char* input, int mode) {
     /* Key length check */
-    if (strlen(k.chars) < 2) {
-        printf("Key too short!\n");
+    if (strlen(k.chars) < 1) {
+        fprintf(stderr , "%s\n", "Key too short!");
         return E_KEY_TOO_SHORT;
     }
 
@@ -75,7 +75,7 @@ int validateKey(KEY k, char* input, int mode) {
     if (mode == ENCRYPT) {
         /* Check for char validation in text and key*/
         if (charValidation(ENCRYPT, input) == 0) {
-            printf("Illegal chars in message!\n");
+            fprintf(stderr, "%s\n", "Illegal chars in message!");
             return E_MESSAGE_ILLEGAL_CHAR;
         }
 
